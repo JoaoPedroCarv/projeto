@@ -1,10 +1,28 @@
- <?php
-    $sucess = isset($_GET['sucess']) ? $_GET['sucess'] : null;
-    if($sucess == 'true'){
-        echo "<script>alert('Produto cadastrado com sucesso!')</script>";
-    }else if($sucess == 'false'){
-        echo "<script>alert('Erro ao cadastrar!')</script>";
-    }
+<?php
+require_once(__DIR__."/../../Controllers/produtoController.php");
+
+if(isset($_GET['idproduto'])) {
+    $idproduto = $_GET['idproduto'];
+    
+    $produtoController = new ProdutoController;
+
+    $produto = $produtoController->getProdutoById($idproduto);
+} else {
+    header('Location: cadastroProduto.php');
+    exit(); 
+}
+
+if(!$produto) {
+    header('Location: cadastroProduto.php');
+    exit();
+}
+
+$sucess = isset($_GET['sucess']) ? $_GET['sucess'] : null;
+if($sucess == 'true'){
+    echo "<script>alert('Produto editado com sucesso!')</script>";
+} else if($sucess == 'false'){
+    echo "<script>alert('Erro ao editar o produto!')</script>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +30,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Produto</title>
+    <title>Editar Produto</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -94,36 +112,32 @@
     </style>
 </head>
 <body>
+    <header>
+        <h1>Editar Produto</h1>
+        <nav>
+            <a href="../../../index.php">Página Inicial</a>
+        </nav>
+    </header>
 
-<header>
-    <h1>Cadastro de Produto</h1>
-    <nav>
-        <a href="../../../index.php">Página Inicial</a>
-    </nav>
-</header>
+    <main>
+        <form id="editarProdutoForm" action="../banco/updateProduto.php" method="post">
 
-<main>
-    <form id="cadastroProdutoForm" action="../banco/insertProduto.php" method="post">
+            <label for="nomeProduto">Nome do Produto:</label>
+            <input type="text" id="nomeProduto" name="nome_produto" value="<?= $produto['nome_produto'] ?>" required>
 
-        
+            <label for="valorProduto">Valor do Produto:</label>
+            <input type="text" id="valorProduto" name="valor_produto" value="<?= $produto['valor_produto'] ?>" required>
 
-        <label for="nomeJogo">Nome do Produto:</label>
-        <input type="text" id="nomeJogo" name="nome_produto" required>
+            <label for="quantidadeProduto">Quantidade em Estoque:</label>
+            <input type="text" id="quantidadeProduto" name="quantidade_produto" value="<?= $produto['quantidade_produto'] ?>" required>
 
-        <label for="valorJogo">Valor do Produto:</label>
-        <input type="text" id="valorJogo" name="valor_produto" required>
+            <label for="descricaoProduto">Descrição do Produto:</label>
+            <textarea id="descricaoProduto" name="descricao" rows="4" required><?= $produto['descricao'] ?></textarea>
 
-        <label for="quantidadeJogo">Quantidade em Estoque:</label>
-        <input type="text" id="quantidadeJogo" name="quantidade_produto" required>
+            <input type="hidden" name="idproduto" value="<?= $produto['idproduto'] ?>">
 
-        <label for="descricaoJogo">Descrição:</label>
-        <textarea id="descricaoJogo" name="descricao" rows="4" required></textarea>
-
-
-
-        <button type="submit">Cadastrar Produto</button>
-    </form>
-</main>
-
+            <button type="submit">Salvar Edições</button>
+        </form>
+    </main>
 </body>
 </html>

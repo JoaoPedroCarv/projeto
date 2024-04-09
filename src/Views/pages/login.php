@@ -3,7 +3,7 @@
     if($sucess == 'true'){
         echo "<script>alert('Cadastro realizado com sucesso!')</script>";
     }else if($sucess == 'false'){
-        echo "<script>alert('Erro ao cadastrar!')</script>";
+        echo "<script>alert('Erro ao logar!')</script>";
     }
 
 ?>
@@ -20,7 +20,7 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            background-image: url("/23/assets/img/fundo4.jpg");  
+            background-image: url("/projeto/assets/img/fundo4.jpg");  
         }
 
         header {
@@ -28,7 +28,7 @@
             color: #fff;
             padding: 1em;
             text-align: center;
-            background-image: url("/23/assets/img/fundo2.png"); 
+            background-image: url("/projeto/assets/img/fundo2.png"); 
         }
 
         nav {
@@ -94,13 +94,13 @@
 <header>
     <h1>Login</h1>
     <nav>
-        <a href="/23/index.php">Página Inicial</a>
+        
         <a href="./cadastro.php">Cadastro</a>
     </nav>
 </header>
 
 <main>
-    <form id="loginForm" action="../php/login.php" method="post">
+    <form id="loginForm" action="../banco/login.php" method="post">
         <label for="usuario">Usuário:</label>
         <input type="text" id="usuario" name="usuario" required>
 

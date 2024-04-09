@@ -35,7 +35,7 @@
         }
 
         public function updateProduto($produto){
-            $sql = "UPDATE produto SET nome_produto = :nome_produto, descricao = :descricao, valor_produto = :valor_produto, quantidade_produto = :quantidade_produto WHERE id = :id";
+            $sql = "UPDATE produto SET nome_produto = :nome_produto, descricao = :descricao, valor_produto = :valor_produto, quantidade_produto = :quantidade_produto WHERE idproduto = :id";
             $stmt = $this->connection->prepare($sql);
             $stmt->bindValue(':nome_produto', $produto->getNomeProduto());
             $stmt->bindValue(':descricao', $produto->getDescricao());
@@ -43,13 +43,25 @@
             $stmt->bindValue(':quantidade_produto', $produto->getQuantidadeProduto());
             $stmt->bindValue(':id', $produto->getId());
             $stmt->execute();
+
+            if($stmt->rowCount() > 0){
+                header('Location: /projeto/index.php');
+            }else{
+                header('Location: /projeto/index.php');
+            }
         }
 
         public function deleteProduto($id){
-            $sql = "DELETE FROM produto WHERE id = :id";
+            $sql = "DELETE FROM produto WHERE idproduto = :id";
             $stmt = $this->connection->prepare($sql);
             $stmt->bindValue(':id', $id);
             $stmt->execute();
+
+            if($stmt->rowCount() > 0){
+                header('Location: /projeto/index.php');
+            }else{
+                header('Location: /projeto/index.php');
+            }
         }
 
         public function getProdutoById($id){

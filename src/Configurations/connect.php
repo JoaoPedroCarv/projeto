@@ -1,7 +1,7 @@
 <!--Conexão com Banco de Dados-->
 <?php
     define ('HOST', 'localhost');
-    define ('DATABASENAME', 'lojagame');
+    define ('DATABASENAME', 'loja');
     define('USER','root');
     define ('PASSWORD', '');
 

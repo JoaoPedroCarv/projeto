@@ -1,9 +1,7 @@
 <?php
-
 require_once (__DIR__.'/src/Controllers/produtoController.php');
 
 $clienteController = new ProdutoController;
-
 $data = $clienteController->getAll();
 
 if($data == null){
@@ -16,6 +14,7 @@ if($sucess == 'true'){
 }else if($sucess == 'false'){
     echo "<script>alert('Erro ao realizar Login!')</script>";
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -70,10 +69,6 @@ if($sucess == 'true'){
             width: 100%; 
         }
 
-    
-
-    
-
         .card img {
             max-width: 100%;
             height: auto;
@@ -81,35 +76,40 @@ if($sucess == 'true'){
             margin-bottom: 1em;
         }
 
-        .link-comprar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #0a0;
-            color: #fff;
-            padding: 0.5em;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 1em;
+        .link-editar {
+        display: inline-block;
+        padding: 0.5em 1em;
+        background-color: #007bff; 
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
         }
 
-        .link-comprar img {
-            width: 1.5em;
-            margin-left: 0.5em;
+        .link-editar:hover {
+        background-color: #0056b3; 
         }
-
-        .link-comprar:hover {
-            background-color: #0d0;
-        }
-
 
         a{
             text-decoration: none;
             color: #333;
         }
 
-        
-        
+        .link-excluir {
+        display: inline-block;
+        padding: 0.5em 1em;
+        background-color: #dc3545; 
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        margin-left: 0.5em; 
+    }
+
+    .link-excluir:hover {
+        background-color: #c82333; 
+    }
+
     </style>
 </head>
 <body>
@@ -119,12 +119,8 @@ if($sucess == 'true'){
 </header>
 
 <nav>
-    <a href="./src/Views/pages/cadastroProduto.php">Cadastre um Produto
-    </a>
-    <a href="./src/Views/pages/cadastro.php">Cadastro de Clientes</a>
-    <a href="./src/Views/pages/login.php">Login</a>
-    <a href="./src/Views/pages/carrinho.php">Seu Carrinho</a>
-    
+    <a href="./src/Views/pages/cadastroProduto.php">Cadastre um Produto</a>
+    <a href="./src/Views/pages/login.php">Sair</a>
 </nav>
 
 <main>
@@ -135,11 +131,11 @@ if($sucess == 'true'){
         <p><?=$row['descricao']?></p>
         <p>Valor: R$ <?=$row['valor_produto']?></p>
         <p>Quantidade em Estoque: <?=$row['quantidade_produto']?></p>
-        <a href="./src/Views/pages/carrinho.php?idproduto=<?=$row['idproduto']?>" class="link-comprar">Comprar<img src="./public/icons/cart3.svg" alt=""></a>
+        <a href="./src/Views/pages/editarProduto.php?idproduto=<?= $row['idproduto'] ?>" class="link-editar">Editar</a>
+        <a href="./src/Views/php/removeProduto.php?idproduto=<?= $row['idproduto'] ?>" class="link-excluir">Excluir</a>
+
     </div>
     <?php endforeach?>
-
-    <!-- Adicione mais cartões conforme necessário -->
 </main>
 
 </body>

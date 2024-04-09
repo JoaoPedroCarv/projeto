@@ -1,5 +1,6 @@
 <?php
     include_once('../../Controllers/clienteController.php');
+    include_once 'C:/xampp/htdocs/projeto/src/Models/clienteModel.php';
 
     $usuarioController = new ClienteController;
     $usuarioModel = new ClienteModel;

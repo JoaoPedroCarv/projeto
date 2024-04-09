@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            background-image: url("/23/assets/img/fundo4.jpg");  
+            background-image: url("/projeto/assets/img/fundo4.jpg");  
         }
 
         header {
@@ -18,7 +18,7 @@
             color: #fff;
             padding: 1em;
             text-align: center;
-            background-image: url("/23/assets/img/fundo2.png");  
+            background-image: url("/projeto/assets/img/fundo2.png");  
         }
 
         nav {
@@ -51,7 +51,7 @@
         form {
             display: grid;
             gap: 1em;
-            grid-template-columns: 1fr 1fr; /* Colunas com largura igual */
+            grid-template-columns: 1fr 1fr;
         }
 
         label {
@@ -66,7 +66,7 @@
         }
 
         button {
-            grid-column: span 2; /* Ocupar duas colunas */
+            grid-column: span 2;
             padding: 0.5em 1em;
             background-color: #333;
             color: #fff;
@@ -88,13 +88,12 @@
 <header>
     <h1>Cadastro de Usuário</h1>
     <nav>
-        <a href="../../../index.php">Página Inicial</a>
         <a href="login.php">Login</a>
     </nav>
 </header>
 
 <main>
-    <form id="cadastroForm" method="post" action="../php/insertUser.php">
+    <form id="cadastroForm" method="post" action="../banco/insertUser.php">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
 
@@ -122,14 +121,11 @@
         var cep = document.getElementById('cep').value;
         var enderecoInput = document.getElementById('endereco');
 
-        // Remova espaços em branco e caracteres especiais do CEP
         cep = cep.replace(/\D/g, '');
 
         if (cep.length === 8) {
-            // URL para consulta no ViaCEP
             var url = 'https://viacep.com.br/ws/' + cep + '/json/';
 
-            // Realizar a consulta utilizando AJAX
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.open('GET', url);
             xmlHttp.onreadystatechange = function () {
@@ -138,16 +134,13 @@
                     if (data.erro) {
                         alert('CEP não encontrado.');
                     } else {
-                        // Preencher campos de endereço
                         enderecoInput.value = data.logradouro + ', ' + data.bairro + ', ' + data.localidade + ' - ' + data.uf;
-                        // Tornar o campo de endereço opaco
                         enderecoInput.style.opacity = 0.7;
                     }
                 }
             };
             xmlHttp.send();
         } else {
-            // Se o CEP não tem 8 dígitos, mantenha o campo de endereço transparente
             enderecoInput.style.opacity = 1;
         }
     }
