@@ -14,80 +14,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            background-image: url("/projeto/assets/img/fundo4.jpg");  
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-            background-image: url("/projeto/assets/img/fundo2.png"); 
-        }
-
-        nav {
-            display: flex;
-            background-color: #444;
-            padding: 0.5em;
-            
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 0.5em 1em;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        nav a:hover {
-            background-color: #555;
-        }
-
-        main {
-            max-width: 600px;
-            margin: 2em auto;
-            padding: 1em;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        form {
-            display: grid;
-            gap: 1em;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5em;
-        }
-
-        input {
-            width: 100%;
-            padding: 0.5em;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 0.5em 1em;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #555;
-        }
-    </style>
+    <link rel="stylesheet" href="/projeto/assets/css/login.css" type="text/css">
+   
 </head>
 <body>
 
